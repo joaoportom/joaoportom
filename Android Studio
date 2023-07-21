@@ -1,0 +1,260 @@
+                  Indo na pasta ".java" tenho o seguinte código:
+
+package com.example.exemplo;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText editTextmmHgFlexorQ;
+    private Button btnCalcularFlexorQ;
+    private TextView tvresultadoFlexorQ;
+    private TextView TVFlexorQ;
+    private EditText editTextmmHgExtensorQ;
+    private Button btnCalcularExtensorQ;
+    private TextView tvresultadoExtensorQ;
+    private TextView TVExtensorQ;
+    private EditText editTextmmHgAbdutorQ;
+    private Button btnCalcularAbdutorQ;
+    private TextView tvresultadoAbdutorQ;
+    private TextView TVAbdutorQ;
+
+    private Button btnPaginaJ;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        editTextmmHgFlexorQ = findViewById(R.id.editTextmmHgFlexorQ);
+        btnCalcularFlexorQ = findViewById(R.id.btnCalcularFlexorQ);
+        tvresultadoFlexorQ = findViewById(R.id.tvresultadoFlexorQ);
+        editTextmmHgExtensorQ = findViewById(R.id.editTextmmHgExtensorQ);
+        btnCalcularExtensorQ = findViewById(R.id.btnCalcularExtensorQ);
+        tvresultadoExtensorQ = findViewById(R.id.tvresultadoExtensorQ);
+        editTextmmHgAbdutorQ = findViewById(R.id.editTextmmHgAbdutorQ);
+        btnCalcularAbdutorQ = findViewById(R.id.btnCalcularAbdutorQ);
+        tvresultadoAbdutorQ = findViewById(R.id.tvresultadoAbdutorQ);
+        btnPaginaJ = findViewById(R.id.btnPaginaJ);
+    }
+
+    // ESSAS SÃO AS EQUAÇÕES DO QUADRIL: 
+    public void valorEquaçãoFlexorQ (View view){
+        float valormmHg = Float.parseFloat(editTextmmHgFlexorQ.getText().toString());
+        double x = (-0.548);
+        double y = (0.082);
+        double equaFQ = (x + y * valormmHg);
+        String resultado = String.format("%3f",equaFQ);
+        tvresultadoFlexorQ.setText(String.valueOf(resultado));
+    }
+
+    public void valorEquaçãoExtensorQ (View view){
+        float valormmHg = Float.parseFloat(editTextmmHgExtensorQ.getText().toString());
+        double x = (-1.125);
+        double y = (0.101);
+        double equaEQ = (x + y * valormmHg);
+        String resultado = String.format("%3f",equaEQ);
+        tvresultadoExtensorQ.setText(String.valueOf(resultado));
+    }
+
+    public void valorEquaçãoAbdutorQ (View view){
+        float valormmHg = Float.parseFloat(editTextmmHgAbdutorQ.getText().toString());
+        double x = (-1.586);
+        double y = (0.090);
+        double equaAQ = (x + y * valormmHg);
+        String resultado = String.format("%3f",equaAQ);
+        tvresultadoAbdutorQ.setText(String.valueOf(resultado));
+    }
+    // ESSA É A NAVEGAÇÃO ENTRE ABAS QUE EU ESTOU FAZENDO:
+
+    public void irPaginaJ (View view){
+        Intent in = new Intent(MainActivity.this, Joelho.class);
+        startActivity(in);
+    } //public void irPaginaJ vai ser usado como evento onClick do btnIrPaginaJ
+
+    public void irPaginaT (View view){
+        Intent in = new Intent(MainActivity.this, Tornozelo.class);
+        startActivity(in);
+    }
+}
+
+                    NA PASTA ".XML" TENHO O CÓDIGO:
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    //ESSES LAYOUT SÃO ONDE EU POSICIONEI A OPÇÃO DE TROCAR AS INFORMAÇÕES, EXEMPLO: 
+    //COLOQUE O VALOR EM mmHg E CLICK EM CALCULAR.
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="198dp"
+        android:layout_height="184dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.029">
+
+        <TextView
+            android:id="@+id/TVFlexorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flexor de quadril"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="18dp"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editTextmmHgFlexorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnCalcularFlexorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="valorEquaçãoFlexorQ"
+            android:text="Calcular" />
+
+        <TextView
+            android:id="@+id/tvresultadoFlexorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resultado"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="198dp"
+        android:layout_height="184dp"
+        android:layout_marginBottom="316dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
+
+        <TextView
+            android:id="@+id/TVExtensorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Extensor de quadril"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="18dp"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editTextmmHgExtensorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnCalcularExtensorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="valorEquaçãoExtensorQ"
+            android:text="Calcular" />
+
+        <TextView
+            android:id="@+id/tvresultadoExtensorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resultado"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="198dp"
+        android:layout_height="184dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+        app:layout_constraintVertical_bias="0.238">
+
+        <TextView
+            android:id="@+id/TVAbdutorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Abdutor de quadril"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textSize="18dp"
+            android:textStyle="italic" />
+
+        <EditText
+            android:id="@+id/editTextmmHgAbdutorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnCalcularAbdutorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="valorEquaçãoAbdutorQ"
+            android:text="Calcular" />
+
+        <TextView
+            android:id="@+id/tvresultadoAbdutorQ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resultado"
+            android:textAlignment="center"
+            android:textSize="18dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnPaginaJ"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="irPaginaJ"
+        android:text="Joelho"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnIrPaginaT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="84dp"
+        android:layout_marginBottom="4dp"
+        android:onClick="irPaginaT"
+        android:text="Tornozelo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+    //TV Textview
+</androidx.constraintlayout.widget.ConstraintLayout>
